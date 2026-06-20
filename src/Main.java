@@ -1,6 +1,14 @@
 public class Main{
     public static void main(String[] args){
 
+        /*
+        Group 6
+        Dewa Sembiring - 2902775443
+        Muhammad Dustin - 2902799613
+        Shandy Diaz Saputra - 2902773551
+        Stefanus Rico Pandapotan Situngkir - 2902784441
+         */
+
         // Test untuk class lagu
         // Contoh implementasi enkapsulasi
         Lagu[] playlist = new Lagu[5];
