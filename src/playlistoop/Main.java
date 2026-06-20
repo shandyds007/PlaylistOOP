@@ -1,3 +1,5 @@
+package playlistoop;
+
 public class Main{
     public static void main(String[] args){
 
@@ -41,8 +43,42 @@ public class Main{
         // Show playlist
         System.out.println("=== Playlist ===");
         for (int i = 0; i < playlist.length; i++){
-            System.out.println("Lagu ke-" + (i+1));
+            System.out.println("playlistOOP.Lagu ke-" + (i+1));
             System.out.println(playlist[i].tampilkanInfo());
         }
+
+        // test user admin/member
+        Playlist pl = new Playlist(10);
+        Admin admin = new Admin("Dewa");
+        Member member = new Member("Budi");
+
+        // Admin add lagu
+        admin.tambahLagu(pl,
+                new Lagu("Monokrom", "Tulus", 4.5)
+        );
+        admin.tambahLagu(pl,
+                new Lagu("Hati-Hati di Jalan", "Tulus", 4.2)
+        );
+        admin.tambahLagu(pl,
+                new Lagu("Separuh Aku", "NOAH", 4.0)
+        );
+
+        // Member view playlist
+        member.lihatPlaylist(pl);
+
+        System.out.println();
+
+        // Member mencari lagu
+        member.cariLagu(pl, "Monokrom");
+
+        System.out.println();
+
+        // Contoh polymorphism
+        User user1 = new Admin("Admin1");
+        User user2 = new Member("Member1");
+
+        user1.menu();
+        user2.menu();
+
     }
 }

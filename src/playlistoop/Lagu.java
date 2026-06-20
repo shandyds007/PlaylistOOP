@@ -1,3 +1,5 @@
+package playlistoop;
+
 public class Lagu {
     private String judul;
     private String artis;
@@ -39,7 +41,7 @@ public class Lagu {
         this.durasi = durasi;
     }
 
-    // Method untuk show Lagu
+    // Method untuk show playlistOOP.Lagu
     public String tampilkanInfo(){
         return "Judul\t: " + getJudul() +
                 "\nArtis\t: " + getArtis() +
