@@ -1,6 +1,7 @@
 package playlistoop;
 
 public class Main{
+    
     public static void main(String[] args){
 
         /*
@@ -15,30 +16,31 @@ public class Main{
         // Contoh implementasi enkapsulasi
         Lagu[] playlist = new Lagu[5];
 
+       // Mengisi array playlist dengan lagu-lagu hits
         playlist[0] = new Lagu();
-        playlist[0].setJudul("Ini Judul 1");
-        playlist[0].setArtis("Ini Artis 1");
-        playlist[0].setDurasi(3);
+        playlist[0].setJudul("Closer");
+        playlist[0].setArtis("THe Chainsmoker");
+        playlist[0].setDurasi(170);
 
         playlist[1] = new Lagu();
-        playlist[1].setJudul("Ini Judul 2");
-        playlist[1].setArtis("Ini Artis 2");
-        playlist[1].setDurasi(4);
+        playlist[1].setJudul("Die With A Smile");
+        playlist[1].setArtis("Lady Gaga & Bruno Mars");
+        playlist[1].setDurasi(251);
 
         playlist[2] = new Lagu();
-        playlist[2].setJudul("Ini Judul 3");
-        playlist[2].setArtis("Ini Artis 3");
-        playlist[2].setDurasi(3);
+        playlist[2].setJudul("Birds of a Feather");
+        playlist[2].setArtis("Billie Eilish");
+        playlist[2].setDurasi(210);
 
         playlist[3] = new Lagu();
-        playlist[3].setJudul("Ini Judul 4");
-        playlist[3].setArtis("Ini Artis 4");
-        playlist[3].setDurasi(4);
+        playlist[3].setJudul("Espresso");
+        playlist[3].setArtis("Sabrina Carpenter");
+        playlist[3].setDurasi(175);
 
         playlist[4] = new Lagu();
-        playlist[4].setJudul("Ini Judul 5");
-        playlist[4].setArtis("Ini Artis 5");
-        playlist[4].setDurasi(3);
+        playlist[4].setJudul("Taste");
+        playlist[4].setArtis("Sabrina Carpenter");
+        playlist[4].setDurasi(166);
 
         // Show playlist
         System.out.println("=== Playlist ===");
@@ -79,6 +81,15 @@ public class Main{
 
         user1.menu();
         user2.menu();
+
+        System.out.println("\n");
+        System.out.println("TUGAS ASSESTMENT 2 \n");
+
+        PlaylistArray playlistLagu = new PlaylistArray(playlist);
+        playlistLagu.tambahLagu(new Lagu("Nina", "Feast", 214.6));
+        playlistLagu.tampilkanSemuaLagu();
+        playlistLagu.urutkanLaguBerdasarkanDurasi();
+
 
     }
 }
