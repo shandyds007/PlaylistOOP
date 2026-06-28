@@ -45,6 +45,6 @@ public class Lagu {
     public String tampilkanInfo(){
         return "Judul\t: " + getJudul() +
                 "\nArtis\t: " + getArtis() +
-                "\nDurasi\t: " +getDurasi();
+                "\nDurasi\t: " + String.format("%.2f menit",getDurasi());
     }
 }

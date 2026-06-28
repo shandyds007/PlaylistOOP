@@ -49,11 +49,11 @@ public class Main{
                     break;
 
                 case 2:
-                    System.out.print("Masukkan judul lagu : ");
+                    System.out.print("Masukkan judul lagu\t\t: ");
                     String judulBaru = scanner.nextLine();
-                    System.out.print("Masukkan artis      : ");
+                    System.out.print("Masukkan artis\t\t\t: ");
                     String artisBaru = scanner.nextLine();
-                    System.out.print("Masukkan durasi (menit): ");
+                    System.out.print("Masukkan durasi (menit)\t: ");
                     double durasiBaru = scanner.nextDouble();
                     scanner.nextLine();
 

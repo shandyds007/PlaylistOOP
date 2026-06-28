@@ -11,7 +11,7 @@ package playlistoop;
 
 public class PlaylistArray {
 
-    private Lagu[] playlist = new Lagu[10];
+    private static Lagu[] playlist = new Lagu[10];
     private int jumlahLagu = 0;
 
 
@@ -50,7 +50,7 @@ public class PlaylistArray {
             System.out.println("Lagu Berhasil Ditambahkan ke Playlist");
         }
         else{
-            System.out.print("Lagu sudah Full\n");
+            System.out.print("Playlist sudah penuh!\n");
         }
     }
 
@@ -108,6 +108,8 @@ public class PlaylistArray {
     public void urutkanLaguBerdasarkanDurasi() {
         Lagu[] hasilSort = new Lagu[jumlahLagu];
 
+        System.out.println("=== Playlist Sebelum di Sort === \n");
+        tampilkanSemuaLagu();
 
         for (int i = 0; i < jumlahLagu; i++) {
             hasilSort[i] = playlist[i];
