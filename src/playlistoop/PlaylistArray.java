@@ -1,5 +1,14 @@
 package playlistoop;
 
+
+/*
+    Group 6
+    Dewa Sembiring - 2902775443
+    Muhammad Dustin - 2902799613
+    Shandy Diaz Saputra - 2902773551
+    Stefanus Rico Pandapotan Situngkir - 2902784441
+ */
+
 public class PlaylistArray {
 
     private Lagu[] playlist = new Lagu[10];
@@ -13,13 +22,27 @@ public class PlaylistArray {
         }
     }
 
+    public PlaylistArray(){
+
+    }
+
+    // TRAVERSAL
+    // Menelusuri seluruh elemen array dari awal sampai akhir untuk ditampilkan.
+    // Kompleksitas waktu: O(n) -> setiap lagu dikunjungi tepat satu kali.
     public void tampilkanSemuaLagu(){
+        if (jumlahLagu == 0) {
+            System.out.println("Playlist masih kosong.");
+            return;
+        }
         for(int i = 0; i < jumlahLagu; i++){
             System.out.println(playlist[i].tampilkanInfo() + "\n");
             
         }
     }
 
+    // INSERTION
+    // Menambahkan lagu baru ke akhir array, dengan pengecekan kapasitas terlebih dahulu.
+    // Kompleksitas waktu: O(1) -> tidak perlu menggeser elemen lain, langsung ditaruh di akhir.
     public void tambahLagu(Lagu lagu){
         if(jumlahLagu < playlist.length){
             playlist[jumlahLagu] = lagu;
@@ -27,49 +50,61 @@ public class PlaylistArray {
             System.out.println("Lagu Berhasil Ditambahkan ke Playlist");
         }
         else{
-            System.out.print("Lagu sudah Full");
+            System.out.print("Lagu sudah Full\n");
         }
     }
 
-   public void hapusLagu(int index){
-    if(index < 0 || index >= jumlahLagu){
-        System.out.println("Index tidak valid");
-        return;
-    }
+    // DELETION
+    // Mencari index lagu lewat judul (linear search), lalu menggeser semua elemen
+    // setelah index tersebut satu posisi ke kiri agar array tetap rapat (tidak ada celah).
+    // Kompleksitas waktu: O(n) -> pencarian index O(n) + pergeseran elemen O(n).
+    public void hapusLagu(String judul) {
+        int index = -1;
 
-    Lagu[] laguBaru = new Lagu[playlist.length];
-
-    for(int i = 0; i < index; i++){
-        laguBaru[i] = playlist[i];
-    }
-
-    for(int i = index; i < jumlahLagu - 1; i++){
-        laguBaru[i] = playlist[i + 1];
-    }
-
-    for(int i = 0; i < playlist.length; i++){
-        playlist[i] = laguBaru[i];
-    }
-
-    jumlahLagu--;
-}
-    public void cariLagu(String nama){
-        for(int i = 0; i < playlist.length; i++){
-            boolean ketemu = false;
-            if(playlist[i].getJudul() == nama){
-                System.out.println("lagu dengan judul : " + playlist[i].getJudul() 
-                + " ditemukan pada list ke  : " + (i + 1));
-                ketemu = true;
+        for (int i = 0; i < jumlahLagu; i++) {
+            if (playlist[i].getJudul().equalsIgnoreCase(judul)) {
+                index = i;
                 break;
-
-            } 
-            if(!ketemu){
-                System.out.println("Lagu Tidak Ditemukan");
             }
         }
 
+        if (index == -1) {
+            System.out.println("Lagu dengan judul \"" + judul + "\" tidak ditemukan.");
+            return;
+        }
+
+        // geser semua elemen setelah index satu posisi ke kiri
+        for (int i = index; i < jumlahLagu - 1; i++) {
+            playlist[i] = playlist[i + 1];
+        }
+
+        playlist[jumlahLagu - 1] = null; // kosongkan slot terakhir yang sudah tidak terpakai
+        jumlahLagu--;
+
+        System.out.println("Lagu \"" + judul + "\" berhasil dihapus.");
     }
 
+    // SEARCHING
+    // Mencari lagu berdasarkan judul menggunakan metode linear search,
+    // memeriksa elemen satu per satu dari awal sampai ditemukan atau habis.
+    // Kompleksitas waktu: O(n) -> pada kasus terburuk harus memeriksa seluruh elemen.
+    public void cariLagu(String judul) {
+        for (int i = 0; i < jumlahLagu; i++) {
+            if (playlist[i].getJudul().equalsIgnoreCase(judul)) {
+                System.out.println("Lagu ditemukan pada posisi ke-" + (i + 1) + ":");
+                System.out.println(playlist[i].tampilkanInfo());
+                return;
+            }
+        }
+        System.out.println("Lagu dengan judul \"" + judul + "\" tidak ditemukan.");
+    }
+
+    // SORTING (BUBBLE SORT)
+    // Mengurutkan lagu berdasarkan durasi secara ascending menggunakan bubble sort:
+    // membandingkan setiap pasangan elemen bersebelahan dan menukar posisinya jika
+    // urutannya salah, diulang sampai seluruh array terurut.
+    // Kompleksitas waktu: O(n^2) -> dua perulangan bersarang, masing-masing hingga n kali,
+    // karena dalam kasus terburuk setiap elemen harus dibandingkan dengan elemen lainnya.
     public void urutkanLaguBerdasarkanDurasi() {
         Lagu[] hasilSort = new Lagu[jumlahLagu];
 
