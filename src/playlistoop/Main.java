@@ -1,5 +1,7 @@
 package playlistoop;
 
+import java.util.Scanner;
+
 public class Main{
     
     public static void main(String[] args){
@@ -12,84 +14,80 @@ public class Main{
         Stefanus Rico Pandapotan Situngkir - 2902784441
          */
 
-        // Test untuk class lagu
-        // Contoh implementasi enkapsulasi
-        Lagu[] playlist = new Lagu[5];
-
-       // Mengisi array playlist dengan lagu-lagu hits
-        playlist[0] = new Lagu();
-        playlist[0].setJudul("Closer");
-        playlist[0].setArtis("THe Chainsmoker");
-        playlist[0].setDurasi(170);
-
-        playlist[1] = new Lagu();
-        playlist[1].setJudul("Die With A Smile");
-        playlist[1].setArtis("Lady Gaga & Bruno Mars");
-        playlist[1].setDurasi(251);
-
-        playlist[2] = new Lagu();
-        playlist[2].setJudul("Birds of a Feather");
-        playlist[2].setArtis("Billie Eilish");
-        playlist[2].setDurasi(210);
-
-        playlist[3] = new Lagu();
-        playlist[3].setJudul("Espresso");
-        playlist[3].setArtis("Sabrina Carpenter");
-        playlist[3].setDurasi(175);
-
-        playlist[4] = new Lagu();
-        playlist[4].setJudul("Taste");
-        playlist[4].setArtis("Sabrina Carpenter");
-        playlist[4].setDurasi(166);
-
-        // Show playlist
-        System.out.println("=== Playlist ===");
-        for (int i = 0; i < playlist.length; i++){
-            System.out.println("playlistOOP.Lagu ke-" + (i+1));
-            System.out.println(playlist[i].tampilkanInfo());
-        }
-
-        // test user admin/member
-        Playlist pl = new Playlist(10);
-        Admin admin = new Admin("Dewa");
-        Member member = new Member("Budi");
-
-        // Admin add lagu
-        admin.tambahLagu(pl,
-                new Lagu("Monokrom", "Tulus", 4.5)
-        );
-        admin.tambahLagu(pl,
-                new Lagu("Hati-Hati di Jalan", "Tulus", 4.2)
-        );
-        admin.tambahLagu(pl,
-                new Lagu("Separuh Aku", "NOAH", 4.0)
-        );
-
-        // Member view playlist
-        member.lihatPlaylist(pl);
-
-        System.out.println();
-
-        // Member mencari lagu
-        member.cariLagu(pl, "Monokrom");
-
-        System.out.println();
-
-        // Contoh polymorphism
-        User user1 = new Admin("Admin1");
-        User user2 = new Member("Member1");
-
-        user1.menu();
-        user2.menu();
+        Scanner scanner = new Scanner(System.in);
+        PlaylistArray playlistLagu = new PlaylistArray();
 
         System.out.println("\n");
         System.out.println("TUGAS ASSESTMENT 2 \n");
 
-        PlaylistArray playlistLagu = new PlaylistArray(playlist);
-        playlistLagu.tambahLagu(new Lagu("Nina", "Feast", 214.6));
-        playlistLagu.tampilkanSemuaLagu();
-        playlistLagu.urutkanLaguBerdasarkanDurasi();
 
+        // ================= MENU INTERAKTIF =================
+        int pilihan;
+        do {
+            System.out.println("=== MENU PLAYLIST MUSIK ===");
+            System.out.println("1. Tampilkan semua lagu");
+            System.out.println("2. Tambah lagu baru");
+            System.out.println("3. Hapus lagu berdasarkan judul");
+            System.out.println("4. Cari lagu berdasarkan judul");
+            System.out.println("5. Urutkan berdasarkan durasi");
+            System.out.println("6. Keluar");
+            System.out.print("Pilih menu: ");
 
+            while (!scanner.hasNextInt()) {
+                System.out.print("Input harus berupa angka, coba lagi: ");
+                scanner.next();
+            }
+            pilihan = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.println();
+
+            switch (pilihan) {
+                case 1:
+                    System.out.println("Daftar lagu saat ini:");
+                    playlistLagu.tampilkanSemuaLagu();
+                    break;
+
+                case 2:
+                    System.out.print("Masukkan judul lagu : ");
+                    String judulBaru = scanner.nextLine();
+                    System.out.print("Masukkan artis      : ");
+                    String artisBaru = scanner.nextLine();
+                    System.out.print("Masukkan durasi (menit): ");
+                    double durasiBaru = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    playlistLagu.tambahLagu(new Lagu(judulBaru, artisBaru, durasiBaru));
+                    break;
+
+                case 3:
+                    System.out.print("Masukkan judul lagu yang ingin dihapus: ");
+                    String judulHapus = scanner.nextLine();
+                    playlistLagu.hapusLagu(judulHapus);
+                    break;
+
+                case 4:
+                    System.out.print("Masukkan judul lagu yang ingin dicari: ");
+                    String judulCari = scanner.nextLine();
+                    playlistLagu.cariLagu(judulCari);
+                    break;
+
+                case 5:
+                    playlistLagu.urutkanLaguBerdasarkanDurasi();
+                    break;
+
+                case 6:
+                    System.out.println("Terima kasih, program selesai.");
+                    break;
+
+                default:
+                    System.out.println("Pilihan tidak valid, silakan coba lagi.");
+            }
+
+            System.out.println();
+
+        } while (pilihan != 6);
+
+        scanner.close();
     }
 }
